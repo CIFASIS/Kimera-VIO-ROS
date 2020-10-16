@@ -19,6 +19,6 @@
     <param name="left_cam_info_topic"  value="$(arg left_cam_info_topic)"/>
     <param name="right_cam_info_topic" value="$(arg right_cam_info_topic)"/>
     <param name="output_dir"
-           value="$(find kimera_vio)/params/$(arg dataset_name)"/>
+           value="$(find kimera_vio_ros)/Kimera-VIO/params/$(arg dataset_name)"/>
   </node>
 </launch>

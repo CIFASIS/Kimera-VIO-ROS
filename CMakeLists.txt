@@ -13,6 +13,10 @@ if(NOT TARGET Boost::boost)
   INTERFACE_INCLUDE_DIRECTORIES "${Boost_INCLUDE_DIRS}")
 endif()
 
+if(IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/test")
+  add_subdirectory(Kimera-VIO)
+endif()
+
 catkin_simple()
 
 cs_add_library(${PROJECT_NAME}
