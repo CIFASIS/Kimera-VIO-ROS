@@ -1,0 +1,3 @@
+[submodule "Kimera-VIO"]
+	path = Kimera-VIO
+	url = git@gitlab.com:romancomelli/kimera-vio.git
