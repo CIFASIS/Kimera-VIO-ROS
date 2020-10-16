@@ -181,3 +181,23 @@ See the [documentation on hardware setup](docs/hardware_setup.md) for instructio
 
 # BSD License
 KimeraVIO ROS wrapper is open source under the BSD license, see the [LICENSE.BSD](./LICENSE.BSD) file.
+
+# Docker and testing on the Rosario Dataset
+
+To build the image:
+
+```bash
+docker build --rm --tag ros:kimera-vio-ros -f ./Dockerfile .
+```
+
+To run on the Rosario dataset, init the roscore (`roscore`), play some sequence (`rosbag play --pause --clock sequence04.bag`), launch visualization (`rviz -d src/Kimera-VIO-ROS/rviz/kimera_vio_rosario.rviz`) and start the container:
+
+```bash
+docker run -it --rm --net=host --volume="`pwd`/launch:/root/catkin_ws/src/Kimera-VIO-ROS/launch:ro" --volume="`pwd`/Kimera-VIO/params:/root/catkin_ws/src/Kimera-VIO-ROS/Kimera-VIO/params:ro" ros:kimera-vio-ros
+```
+
+To visualize the Kimera-VIO output, it is neccesary to record the odometry topic (using [`pose_listener`](https://github.com/jcremona/pose_listener) it would be `rosrun pose_listener pose_listener _topic:=/kimera_vio_ros/odometry _type:=O`). Then it can be plotted with [evo](https://github.com/MichaelGrupp/evo):
+
+```bash
+evo_traj tum trajectory.txt --plot
+```
