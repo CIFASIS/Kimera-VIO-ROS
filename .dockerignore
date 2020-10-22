@@ -1,4 +1,7 @@
 Dockerfile
+.dockerignore
 README.md
-Kimera-VIO/params/rosario_dataset*
-launch*
+.git/*
+Kimera-VIO/params/rosario_dataset/*
+launch/*
+outputs/*

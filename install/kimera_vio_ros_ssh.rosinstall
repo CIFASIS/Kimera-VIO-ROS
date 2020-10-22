@@ -39,10 +39,6 @@
     uri: git@github.com:MIT-SPARK/Kimera-RPGO.git
     version: 1ec91c518ca69478857ec9ce3168ae74c9e3fa03
 - git:
-    local-name: Kimera-VIO-ROS
-    uri: git@github.com:MIT-SPARK/Kimera-VIO-ROS.git
-    version: 638c387fd7264cbe72edbf1457dae0fff8e8d959
-- git:
     local-name: glog_catkin
     uri: git@github.com:ethz-asl/glog_catkin.git
     version: 1b8eab2d071068c41aa10137370409e9bd2409ec
