@@ -36,3 +36,5 @@
 
 # Vscode files
 .vscode/
+
+outputs/*
