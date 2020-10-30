@@ -184,17 +184,19 @@ KimeraVIO ROS wrapper is open source under the BSD license, see the [LICENSE.BSD
 
 # Docker and testing on the Rosario Dataset
 
-To build the image:
+Being in the Kimera-VIO-ROS directory, to build the image execute this:
 
 ```bash
-docker build --rm --tag ros:kimera-vio-ros -f ./Dockerfile .
+docker build --rm --tag ros:kimera-vio -f ./Dockerfile .
 ```
 
-To run on the Rosario dataset, init the roscore (`roscore`), play some sequence (`rosbag play --pause --clock sequence04.bag`), launch visualization (`rviz -d src/Kimera-VIO-ROS/rviz/kimera_vio_rosario.rviz`) and start the container:
+To run on the Rosario dataset:
 
 ```bash
-docker run -it --rm --net=host --volume="`pwd`/launch:/root/catkin_ws/src/Kimera-VIO-ROS/launch:ro" --volume="`pwd`/Kimera-VIO/params:/root/catkin_ws/src/Kimera-VIO-ROS/Kimera-VIO/params:ro" ros:kimera-vio-ros
+docker run -it --rm --net=host --volume="`pwd`/launch:/root/catkin_ws/src/Kimera-VIO-ROS/launch:ro" --volume="`pwd`/Kimera-VIO/params:/root/catkin_ws/src/Kimera-VIO-ROS/Kimera-VIO/params:ro" ros:kimera-vio
 ```
+
+Then launch visualization (`rviz -d rviz/kimera_vio_rosario.rviz &`) and play some sequence (`rosbag play --pause --clock path/to/sequence04.bag`).
 
 To visualize the Kimera-VIO output, it is neccesary to record the odometry topic (using [`pose_listener`](https://github.com/jcremona/pose_listener) it would be `rosrun pose_listener pose_listener _topic:=/kimera_vio_ros/odometry _type:=O`). Then it can be plotted with [evo](https://github.com/MichaelGrupp/evo):
 
