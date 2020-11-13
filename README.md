@@ -187,7 +187,7 @@ KimeraVIO ROS wrapper is open source under the BSD license, see the [LICENSE.BSD
 Being in the Kimera-VIO-ROS directory, to build the image execute this:
 
 ```bash
-docker build --rm --tag ros:kimera-vio -f ./Dockerfile .
+docker build --rm --tag ros:kimera-vio .
 ```
 
 To run on the Rosario dataset:
