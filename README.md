@@ -187,13 +187,13 @@ KimeraVIO ROS wrapper is open source under the BSD license, see the [LICENSE.BSD
 Being in the Kimera-VIO-ROS directory, to build the image execute this:
 
 ```bash
-docker build --rm --tag ros:kimera-vio .
+docker build --rm --tag kimera:ros_melodic .
 ```
 
 To run on the Rosario dataset:
 
 ```bash
-docker run -it --rm --net=host --volume="`pwd`/launch:/root/catkin_ws/src/Kimera-VIO-ROS/launch:ro" --volume="`pwd`/Kimera-VIO/params:/root/catkin_ws/src/Kimera-VIO-ROS/Kimera-VIO/params:ro" ros:kimera-vio
+docker run -it --rm --net=host --volume="`pwd`/launch:/root/catkin_ws/src/Kimera-VIO-ROS/launch:ro" --volume="`pwd`/Kimera-VIO/params:/root/catkin_ws/src/Kimera-VIO-ROS/Kimera-VIO/params:ro" kimera:ros_melodic
 ```
 
 Then launch visualization (`rviz -d rviz/kimera_vio_rosario.rviz &`) and play some sequence (`rosbag play --pause --clock path/to/sequence04.bag`).

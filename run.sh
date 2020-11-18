@@ -82,23 +82,23 @@ if [ -z "$SOME_OPT" ]; then
 fi
 
 if [ $DEV_MODE -eq 1 ] ; then
-  docker run --rm -it --net=host -v $CURRENT_DIR:/root/catkin_ws/src/Kimera-VIO-ROS/ ros:kimera-vio-ros /bin/bash
+  docker run --rm -it --net=host -v $CURRENT_DIR:/root/catkin_ws/src/Kimera-VIO-ROS/ kimera:ros_melodic /bin/bash
 fi
 
 if [ $VIS_MODE -eq 1 ] ; then
   if [ $DETACHED -eq 1 ] ; then
     docker run -d --net=host \
       -v $CURRENT_DIR/Kimera-VIO/params/rosario_dataset:/root/catkin_ws/src/Kimera-VIO-ROS/Kimera-VIO/params/rosario_dataset:ro \
-      -v $CURRENT_DIR/launch:/root/catkin_ws/src/Kimera-VIO-ROS/launch:ro ros:kimera-vio-ros \
+      -v $CURRENT_DIR/launch:/root/catkin_ws/src/Kimera-VIO-ROS/launch:ro kimera:ros_melodic \
       roslaunch kimera_vio_ros $LAUNCH_FILE
   else
     docker run --net=host \
       -v $CURRENT_DIR/Kimera-VIO/params/rosario_dataset:/root/catkin_ws/src/Kimera-VIO-ROS/Kimera-VIO/params/rosario_dataset:ro \
-      -v $CURRENT_DIR/launch:/root/catkin_ws/src/Kimera-VIO-ROS/launch:ro ros:kimera-vio-ros \
+      -v $CURRENT_DIR/launch:/root/catkin_ws/src/Kimera-VIO-ROS/launch:ro kimera:ros_melodic \
       roslaunch kimera_vio_ros $LAUNCH_FILE
   fi
 fi
 
 if [ $BUILD -eq 1 ] ; then
-  docker build --rm -t ros:kimera-vio-ros $CURRENT_DIR
+  docker build --rm -t kimera:ros_melodic $CURRENT_DIR
 fi
