@@ -16,6 +16,7 @@
        Hacky way of avoiding error in KimeraVIO by linking to 3.4.2-->
   <depend>opencv3_catkin</depend>
   <depend>eigen_catkin</depend>
+  <depend>opengv_catkin</depend>
   <depend>kimera_rpgo</depend>
   <depend>kimera_vio</depend>
 
