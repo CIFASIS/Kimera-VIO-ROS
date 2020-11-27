@@ -5,14 +5,13 @@
 
 set -e # Any subsequent commands which fail will cause the shell script to exit immediately
 OUTPUT_TOPIC="/kimera_vio_ros/odometry"
-CATKIN_WS_DIR=$HOME/catkin_ws/
 
 # Get full directory name of the script no matter where it is being called from
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 function echoUsage()
 {
-    echo -e "Usage: ./run_rosario_sequence.sh [FLAG] ROSBAG\n\
+    echo -e "Usage: ./run_rosario_sequence.sh [FLAG] ROSBAG WORKSPACE\n\
             \t -r run method in a detached docker container \n\
             \t -o path to output file \n\
             \t -b do not open rviz visualization \n\
@@ -45,6 +44,7 @@ done
 
 shift $((OPTIND -1))
 BAG=$1
+CATKIN_WS_DIR=$2
 
 function cleanup() {
   if [ -n "${CID}" ] ; then

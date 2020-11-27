@@ -3,6 +3,7 @@
 # Run Rosario dataset (from sequence 01 to 06)
 # Parameter:
 #   -Path of folder containing rosbags (files must be named sequence0*.bag)
+#   -Path of ROS workspace (where pose_listener is)
 
 # Get full directory name of the script no matter where it is being called from
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
@@ -13,7 +14,7 @@ fi
 
 function echoUsage()
 {
-  echo -e "Usage: ./run_rosario_sequence.sh [-p] ROSBAGS_PATH\n\
+  echo -e "Usage: ./run_rosario_sequence.sh [-p] ROSBAGS_PATH WORKSPACE_PATH\n\
           \t -p \t Plot and show results. Even if the flag is not set, a\n\
           \t\t script to automatically plot the results will be\n\
           \t\t generated with outputs. Evo should be installed. \n\
@@ -37,6 +38,7 @@ done
 
 shift $((OPTIND - 1))
 DATASET_DIR=$1
+CATKIN_WS_DIR=$2
 
 dt=$(date '+%Y%m%d_%H%M%S')
 OUTPUT_DIR=$CURRENT_DIR/outputs/rosario_${dt}
@@ -46,7 +48,7 @@ echo "#!/bin/bash" > $OUTPUT_DIR/plot_results.sh
 trap "exit 1" INT
 
 for i in ${SEQUENCES[@]} ; do
-  $CURRENT_DIR/run_rosario_sequence.sh -r -b -o $OUTPUT_DIR/trajectory_rosario_0$i.txt $DATASET_DIR/sequence0$i.bag
+  $CURRENT_DIR/run_rosario_sequence.sh -r -b -o $OUTPUT_DIR/trajectory_rosario_0$i.txt $DATASET_DIR/sequence0$i.bag $CATKIN_WS_DIR
   echo "evo_traj tum $OUTPUT_DIR/trajectory_rosario_0$i.txt --ref $DATASET_DIR/sequence0${i}_gt.txt --align --plot --t_max_diff 0.02" >> $OUTPUT_DIR/plot_results.sh
 done
 
