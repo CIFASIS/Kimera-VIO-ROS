@@ -34,7 +34,7 @@ RUN catkin config --extend /opt/ros/$ROS_DISTRO \
     wstool merge Kimera-VIO-ROS/install/kimera_vio_ros_https.rosinstall && \
     wstool update && \
     cd ../ && \
-    catkin build
+    catkin build -j 2
 
 # Define CMD
 #CMD /bin/bash -c "source ~/catkin_ws/devel/setup.bash && roslaunch kimera_vio_ros kimera_vio_ros_rosario.launch"
