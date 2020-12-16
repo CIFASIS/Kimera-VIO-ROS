@@ -3,6 +3,11 @@ project(kimera_vio_ros)
 
 find_package(catkin_simple REQUIRED)
 
+option(LOG_TRACKING_TIMESTAMPS         "Enable option to save tracking times" OFF)
+if( LOG_TRACKING_TIMESTAMPS )
+   add_definitions(-DLOG_TRACKING_TIMESTAMPS)
+endif()
+
 ### System Dependencies
 find_package(Boost REQUIRED COMPONENTS
   serialization system filesystem thread date_time regex timer chrono)

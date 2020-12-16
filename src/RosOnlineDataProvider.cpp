@@ -37,7 +37,8 @@ RosOnlineDataProvider::RosOnlineDataProvider(const VioParams& vio_params)
       reinit_pose_subscriber_(),
       imu_queue_(),
       imu_async_spinner_(nullptr),
-      async_spinner_(nullptr) {
+      async_spinner_(nullptr),
+      input("input.csv") {
   // Wait until time is non-zero and valid: this is because at the ctor level
   // we will be querying for gt pose and/or camera info.
   while (ros::ok() && !ros::Time::now().isValid()) {
@@ -276,6 +277,7 @@ bool RosOnlineDataProvider::sequentialSpin() {
 void RosOnlineDataProvider::callbackStereoImages(
     const sensor_msgs::ImageConstPtr& left_msg,
     const sensor_msgs::ImageConstPtr& right_msg) {
+  input.Log();
   CHECK_GE(vio_params_.camera_params_.size(), 2u);
   const CameraParams& left_cam_info = vio_params_.camera_params_.at(0);
   const CameraParams& right_cam_info = vio_params_.camera_params_.at(1);

@@ -17,6 +17,7 @@
 #include <std_msgs/Bool.h>
 
 #include "kimera_vio_ros/RosDataProviderInterface.h"
+#include "timestamps_logger.h"
 
 namespace VIO {
 
@@ -43,6 +44,7 @@ class RosOnlineDataProvider : public RosDataProviderInterface {
   inline bool getReinitFlag() const { return reinit_flag_; }
   // Resets the current status of reinitialization flag
   inline void resetReinitFlag() { reinit_packet_.resetReinitFlag(); }
+  TimestampsLogger input;
 
  protected:
   /**
